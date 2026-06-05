@@ -13,8 +13,8 @@ export default {
     // =============================
     const sites = [
       {
-        name: 'render',
-        url: 'https://docker-nodejs-argo.onrender.com/',
+        name: '',
+        url: '',
         owner: 'ly921002',
         repo: 'docker-nodejs-argo',
         workflow_id: 'main.yml',
