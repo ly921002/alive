@@ -1,3 +1,12 @@
+function fetchWithTimeout(url, options = {}, timeout = 8000) {
+  const controller = new AbortController();
+  const id = setTimeout(() => controller.abort(), timeout);
+
+  return fetch(url, {
+    ...options,
+    signal: controller.signal,
+  }).finally(() => clearTimeout(id));
+}
 export default {
   async fetch(request, env, ctx) {
     return new Response("CF Worker is alive 👋");
@@ -56,12 +65,12 @@ export default {
         // =============================
         // 站点检测
         // =============================
-        const resp = await fetch(url, {
+        const resp = await fetchWithTimeout(url, {
           method: 'GET',
           headers: {
             'User-Agent': 'CF-Worker-Monitor',
           },
-        });
+        }, 8000);
 
         const text = await resp.text();
         const isError =
