@@ -1,1 +1,4 @@
 # alive
+
+KV 命名空间 WORKFLOW_LOCK
+GITHUB_TOKEN
